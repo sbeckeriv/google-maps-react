@@ -43,9 +43,17 @@ export class InfoWindow extends React.Component {
     });
 
     google.maps.event
+      .addListener(iw, 'click', this.onClicked.bind(this))
+    google.maps.event
       .addListener(iw, 'closeclick', this.onClose.bind(this))
     google.maps.event
       .addListener(iw, 'domready', this.onOpen.bind(this));
+  }
+
+  onClicked() {
+    if (this.props.onClicked) {
+      this.props.onClicked();
+    }
   }
 
   onOpen() {
